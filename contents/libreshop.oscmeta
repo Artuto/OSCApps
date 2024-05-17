@@ -21,7 +21,7 @@
     },
     "treatments": [
         {
-            "broken": "contents.move",
+            "broken2": "contents.move",
             "arguments": [
                 "libreshop/",
                 "apps/libreshop/"
