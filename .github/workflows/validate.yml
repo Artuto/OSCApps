@@ -1,0 +1,20 @@
+name: Validate Manifests
+
+on:
+  push:
+    paths:
+      - 'contents/**.json'
+  pull_request:
+    paths:
+      - 'contents/**.json'
+
+jobs:
+  verify-json-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Validate Manifests
+        uses: OrRosenblatt/validate-json-action@0.1.0
+        env:
+          INPUT_SCHEMA: schemas/ValidationSchema.1.0.0.json
+          INPUT_JSONS: contents/**.json
