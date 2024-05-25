@@ -9,7 +9,6 @@
             "wii_mini"
         ],
         "peripherals": [
-            "Wii Remote",
             "Wii Remote"
         ],
         "version": "auto"
