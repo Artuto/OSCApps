@@ -22,4 +22,4 @@ jobs:
         uses: dsanders11/json-schema-validate-action@v1.1.2
         with:
           schema: schemas/ValidationSchema.1.0.0.json
-          files: ${{ github.env.ADDED_MODIFIED }}
+          files: ${{ steps.files.outputs.ADDED_MODIFIED }}
