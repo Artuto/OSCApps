@@ -15,11 +15,11 @@ jobs:
       - uses: actions/checkout@v1
       - id: files
         name: Figure out modified files
-        uses: jitterbit/get-changed-files@v1
-        with:
-          format: 'json'
+        run: |
+          diff=$(git diff --name-only --diff-filter=AM origin/master..HEAD | tr '\n' ' ')
+          echo "ADDED_MODIFIED=$diff" >> "$GITHUB_OUTPUT"
       - name: Validate Manifests
         uses: dsanders11/json-schema-validate-action@v1.1.2
         with:
           schema: schemas/ValidationSchema.1.0.0.json
-          files: ${{ steps.files.outputs.added_modified }}
+          files: ${{ github.env.ADDED_MODIFIED }}
