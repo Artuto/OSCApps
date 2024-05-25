@@ -9,12 +9,17 @@ on:
       - 'contents/**.oscmeta'
 
 jobs:
-  verify-json-validation:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - id: files
+        name: Figure out modified files
+        uses: jitterbit/get-changed-files@v1
+        with:
+          format: 'json'
       - name: Validate Manifests
         uses: dsanders11/json-schema-validate-action@v1.1.2
         with:
           schema: schemas/ValidationSchema.1.0.0.json
-          files: contents/**.oscmeta
+          files: ${{ steps.files.outputs.added_modified }}
